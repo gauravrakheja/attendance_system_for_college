@@ -1,6 +1,6 @@
-class AttendancesController < ApplicationController
-	def inex
-
+class AttendsController < ApplicationController
+	def index
+		
 	end
 
 	def new

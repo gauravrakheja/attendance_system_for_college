@@ -17,20 +17,11 @@
   <dt><strong><%= model_class.human_attribute_name(:year) %>:</strong></dt>
   <dd><%= @student.year %></dd>
 </dl>
-<% @student.subjects do |subject| %>
-  <table class="table-bordered table-responsive">
-    <thead>
-      <tr>
-        <th>Subject</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= subject.name %></td>
-      </tr>
-    </tbody>
-  </table>
+<ul class="list-group">
+<% @student.subjects.each do |subject| %>
+  <li class="list-group-item"><%= subject.name %></li>
 <% end %>
+<br/>
 <%= link_to t('.back', :default => t("helpers.links.back")),
               students_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),

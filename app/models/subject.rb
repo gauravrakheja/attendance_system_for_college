@@ -1,4 +1,4 @@
 class Subject < ApplicationRecord
-	belongs_to :student
-	has_many :attendances
+	has_many :attends
+	has_many :students, through: :attends
 end

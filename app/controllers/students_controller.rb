@@ -15,15 +15,18 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
+    8.times { @student.subjects.new }
   end
 
   # GET /students/1/edit
   def edit
+    8.times { @student.subjects.new }
   end
 
   # POST /students
   # POST /students.json
   def create
+    binding.pry
     @student = Student.new(student_params)
 
     respond_to do |format|
@@ -69,6 +72,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:roll_number, :name, :phone, :email, :course, :year)
+      params.require(:student).permit(:roll_number, :name, :phone, :email, :course, :year, subjects_attributes: [:id, :name, :course, :subject_code])
     end
 end
