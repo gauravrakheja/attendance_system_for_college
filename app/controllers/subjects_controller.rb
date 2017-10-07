@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: [:show, :edit, :update, :destroy]
+  before_action :set_subject, only: [:show, :edit, :update]
 
   # GET /subjects
   # GET /subjects.json
@@ -10,6 +10,8 @@ class SubjectsController < ApplicationController
   # GET /subjects/1
   # GET /subjects/1.json
   def show
+    student = @subject.students.map(&:id).uniq
+    @students = Student.where(id: student)
   end
 
   # GET /subjects/new
@@ -54,11 +56,7 @@ class SubjectsController < ApplicationController
   # DELETE /subjects/1
   # DELETE /subjects/1.json
   def destroy
-    @subject.destroy
-    respond_to do |format|
-      format.html { redirect_to subjects_url, notice: 'Subject was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    Subject.destroy_all
   end
 
   private

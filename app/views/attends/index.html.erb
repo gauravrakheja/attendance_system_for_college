@@ -1,2 +1,13 @@
-<h1><%= Date.today %></h1>
-<h2>Showing Attendace of Students</h2>
+<table class="table table-stripped table-responsive">
+	<% unless @attends.empty? %>
+	<% @attends.each do |attendance| %>
+	<% binding.pry %>
+		<tr>
+			<td><%= attendance.student.name %></td>
+			<td><%= attendance.subject.name %></td>
+			<td><%= attendance.day %></td>
+		</tr>
+	<% end %>
+	<% end %>
+</table>
+<%= link_to "Export attendace as spreadsheet", attends_path(format: "xlsx"), class: "btn btn-default" %>

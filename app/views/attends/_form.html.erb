@@ -1,0 +1,7 @@
+<%= form_for Attend.new do |f| %>
+	<%= f.hidden_field :student_id, value: student.id %>
+	<%= f.hidden_field :subject_id, value: subject.id %>
+	<%= f.hidden_field :day, value: Date.today %>
+	<%= f.submit "Mark Absent", class: "btn btn-default" %>
+<% end %>
+

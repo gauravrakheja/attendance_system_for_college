@@ -30,9 +30,21 @@
           <ul class="nav navbar-nav">
             <li><%= link_to "Students", students_path  %></li>
             <li><%= link_to "Subjects", subjects_path  %></li>
-            <li><%= link_to "Today's attendace", attends_path  %></li>
+            <li>
+            <div class="btn-group">
+              <button type="button" class="subject_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Daily Absence <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <% Subject.all.each do |subject| %>
+                  <li><%= link_to "#{subject.name}", attends_path(subject_id: subject.id) %></li>
+                <% end %>
+              </ul>
+            </li>
+            <li><%= link_to "Sign Out", destroy_user_session_path %>
           </ul>
         </div>
+        <!-- Split button -->
       </div>
     </div>
 
@@ -45,10 +57,30 @@
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Company 2017</p>
+        <p>&copy; Don Bosco Institute Of Bio Sciences And Management 2017</p>
       </footer>
 
     </div> <!-- /container -->
 
+  <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Clear Database <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <% if Student.last %>
+      <li><%= link_to "Delete Students", student_path(Student.last), method: 'delete', data: { confirm: "Are You Sure? This is irreversible" } %></li>
+      <% end %>
+
+      <% if Subject.last %>
+      <li><%= link_to "Delete Subjects", subjects_path(Subject.last), method: 'delete', data: { confirm: "Are You sure? This is irreversible!" } %></li>
+      <% end %>
+
+      <% if Attend.last %>
+      <li><%= link_to "Delete Attendances", attends_path(Attend.last), method: 'delete', data: { confirm: "Are You sure? This is irreversible!" } %></li>
+      <% end %>
+    </ul>
+  </div>
+    </ul>
+  </div>
   </body>
 </html>

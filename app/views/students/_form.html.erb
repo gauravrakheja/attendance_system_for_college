@@ -63,7 +63,7 @@
     <%= f.fields_for :subjects do |r| %>
       <div class="col-lg-2">
         <div class="select_style">
-        <%= collection_select(:subject, :subject_id, Subject.all, :id, :name, prompt: true) %>
+        <%= r.collection_select(:id, Subject.all, :id, :name, prompt: "select subject") %>
         </div>
       </div>
     <% end %>
