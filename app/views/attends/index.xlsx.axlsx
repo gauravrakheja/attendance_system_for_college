@@ -2,10 +2,13 @@ wb = xlsx_package.workbook
 
 wb.add_worksheet(name: Date.today.strftime("%Y,%m,%d")) do |sheet|
 
-	sheet.add_row %w(roll_number name email remark)
-	if @students 
-		@students.each do |student|
-			sheet.add_row [ student.roll_number, student.name, student.phone ]
-		end
+	students = []
+	subject = ""
+	@attends.each do |attendance|
+		students << attendance.student
+	end
+	sheet.add_row %w(roll_number name phone remark)
+	students.uniq.each do |student|
+		sheet.add_row [ student.roll_number, student.name, student.phone ]
 	end
 end

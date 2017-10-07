@@ -18,8 +18,8 @@
   <dd><%= @student.year %></dd>
 </dl>
 <ul class="list-group">
-<% @student.subjects.each do |subject| %>
-  <li class="list-group-item"><%= subject.name %></li>
+<% @student.subjects.map(&:name).uniq.each do |subject| %>
+  <li class="list-group-item"><%= subject %></li>
 <% end %>
 <br/>
 <%= link_to t('.back', :default => t("helpers.links.back")),

@@ -5,7 +5,8 @@ class AttendsController < ApplicationController
 		else
 			@attends = Attend.all
 		end
-		@attends = Attend.where(day: Date.today)
+		@attends = @attends.where(day: Date.today)
+		
 		respond_to do |format|
 		  format.html
 		  format.xlsx {

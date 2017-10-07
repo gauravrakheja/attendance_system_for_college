@@ -15,5 +15,9 @@
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require twitter/bootstrap
+//= require material
 //= require turbolinks
 //= require_tree .
+document.addEventListener('turbolinks:load', function() {
+  componentHandler.upgradeDom();
+});
