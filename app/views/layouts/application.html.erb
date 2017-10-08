@@ -53,33 +53,34 @@
         <div class="col-lg-9">
           <%= bootstrap_flash %>
           <%= yield %>
+          <% if current_user %>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Clear Database <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <% if Student.last %>
+              <li><%= link_to "Delete Students", student_path(Student.last), method: 'delete', data: { confirm: "Are You Sure? This is irreversible" } %></li>
+              <% end %>
+
+              <% if Subject.last %>
+              <li><%= link_to "Delete Subjects", subjects_path(Subject.last), method: 'delete', data: { confirm: "Are You sure? This is irreversible!" } %></li>
+              <% end %>
+
+              <% if Attend.last %>
+              <li><%= link_to "Delete Attendances", attends_path(Attend.last), method: 'delete', data: { confirm: "Are You sure? This is irreversible!" } %></li>
+              <% end %>
+            </ul>
+          </div>
+          <% end %>
         </div>
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Don Bosco Institute Of Bio Sciences And Management 2017</p>
+        <p>Login ID: dbibms@db.com, password: dbibms,<br/> email_account: dbibmslibrary@bulletmail.org, password: dbit@123user<br/>Heroku Credentials: dbibmslibrary@bulletmail.org, password: dbit123@user</p>
       </footer>
 
     </div> <!-- /container -->
-
-  <div class="btn-group">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Clear Database <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <% if Student.last %>
-      <li><%= link_to "Delete Students", student_path(Student.last), method: 'delete', data: { confirm: "Are You Sure? This is irreversible" } %></li>
-      <% end %>
-
-      <% if Subject.last %>
-      <li><%= link_to "Delete Subjects", subjects_path(Subject.last), method: 'delete', data: { confirm: "Are You sure? This is irreversible!" } %></li>
-      <% end %>
-
-      <% if Attend.last %>
-      <li><%= link_to "Delete Attendances", attends_path(Attend.last), method: 'delete', data: { confirm: "Are You sure? This is irreversible!" } %></li>
-      <% end %>
-    </ul>
-  </div>
     </ul>
   </div>
   </body>
